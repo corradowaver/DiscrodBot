@@ -1,6 +1,5 @@
-package com.corradowaver.bot.commands.handlers.music;
+package com.corradowaver.bot.commands.services.music;
 
-import com.corradowaver.bot.commands.services.music.GuildMusicManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;

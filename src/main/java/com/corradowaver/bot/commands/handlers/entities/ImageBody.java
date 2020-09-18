@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commands.handlers.images;
+package com.corradowaver.bot.commands.handlers.entities;
 
 public class ImageBody {
   private String name;
@@ -7,10 +7,6 @@ public class ImageBody {
   public ImageBody(String name, String url) {
     this.name = name;
     URL = url;
-  }
-
-  public ImageBody() {
-
   }
 
   public void setURL(String URL) {

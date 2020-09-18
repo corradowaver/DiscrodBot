@@ -1,4 +1,4 @@
-package com.corradowaver.bot.commands.handlers.bitcoin;
+package com.corradowaver.bot.commands.handlers.entities;
 
 public class BitcoinBody {
   private String currency;

@@ -1,6 +1,6 @@
 package com.corradowaver.bot.commands.services.images;
 
-import com.corradowaver.bot.commands.handlers.images.ImageBody;
+import com.corradowaver.bot.commands.handlers.entities.ImageBody;
 import com.corradowaver.bot.config.PropsManager;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

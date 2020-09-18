@@ -1,6 +1,6 @@
 package com.corradowaver.bot.commands.messages;
 
-import com.corradowaver.bot.commands.handlers.bitcoin.BitcoinBody;
+import com.corradowaver.bot.commands.handlers.entities.BitcoinBody;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -11,7 +11,6 @@ import java.util.List;
 public class BitcoinMessages {
 
   private BitcoinMessages() {
-
   }
 
   public static MessageEmbed getMessage(GuildMessageReceivedEvent event, List<BitcoinBody> rates) {

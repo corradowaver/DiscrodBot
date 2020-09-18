@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.awt.*;
 import java.util.Objects;
 
-public class GuildJoinListener extends ListenerAdapter {
+public class GuildGirlJoinListener extends ListenerAdapter {
 
   private static final String JOIN_MESSAGE = "We've been waiting for you, [nickname] senpai.";
 
@@ -20,3 +20,4 @@ public class GuildJoinListener extends ListenerAdapter {
     event.getGuild().getDefaultChannel().sendMessage(message.build()).queue();
   }
 }
+

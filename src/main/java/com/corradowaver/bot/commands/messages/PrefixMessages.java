@@ -12,7 +12,6 @@ import java.awt.*;
 public class PrefixMessages {
 
   private PrefixMessages() {
-
   }
 
   public static MessageEmbed getSuccessMessage() {

@@ -23,7 +23,6 @@ public class InfoMessages {
   };
 
   private InfoMessages() {
-
   }
 
   public static MessageEmbed getMessage(GuildMessageReceivedEvent event) {

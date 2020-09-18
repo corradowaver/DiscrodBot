@@ -1,6 +1,6 @@
 package com.corradowaver.bot.commands.services.bitcoin;
 
-import com.corradowaver.bot.commands.handlers.bitcoin.BitcoinBody;
+import com.corradowaver.bot.commands.handlers.entities.BitcoinBody;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;

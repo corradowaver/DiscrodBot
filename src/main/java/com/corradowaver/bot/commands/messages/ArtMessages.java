@@ -9,6 +9,9 @@ import java.util.Objects;
 
 public class ArtMessages {
 
+  private ArtMessages() {
+  }
+
   public static MessageEmbed getMessage(GuildMessageReceivedEvent event, String text) {
     EmbedBuilder response = new EmbedBuilder();
     response.setDescription("```" + text + "```");

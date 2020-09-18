@@ -11,7 +11,6 @@ import java.awt.*;
 public class PingMessages {
 
   private PingMessages() {
-
   }
 
   public static MessageEmbed getMessage(long latency) {
