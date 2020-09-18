@@ -13,8 +13,14 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -54,6 +60,20 @@ public class EventHandler {
       response = ImageMessages.getInvalidArgumentsMessage();
     }
     return response;
+  }
+
+  public static String getLightCommandMessage(GuildMessageReceivedEvent event) {
+    String TURN_ON_LIGHT = "TURN ON LIGHT";
+    try {
+      File monitor = new File("/dev/ttyACM0");
+      FileWriter fooWriter = new FileWriter(monitor, false); // true to append
+      fooWriter.write(TURN_ON_LIGHT);
+      fooWriter.close();
+      return "now one little diode is glowing for you, senpai";
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      return "oh no, i could not light the diode...";
+    }
   }
 
   public static MessageEmbed getPingCommandMessage(GuildMessageReceivedEvent event) {

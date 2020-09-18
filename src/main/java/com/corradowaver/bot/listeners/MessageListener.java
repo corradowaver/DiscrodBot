@@ -27,6 +27,7 @@ public class MessageListener extends ListenerAdapter {
         case SEND -> sendResponse(channel, getSearchImageCommandMessage(event));
         case PING -> sendResponse(channel, getPingCommandMessage(event));
         case BTC -> sendResponse(channel, getBitcoinCommandMessage(event));
+        case LIGHT -> sendResponse(channel, getLightCommandMessage(event));
         case ART -> sendResponse(channel, getArtCommandMessage(event));
         case JOIN -> sendResponse(channel, getJoinCommandMessage(event));
         case LEAVE -> sendResponse(channel, getLeaveCommandMessage(event));
