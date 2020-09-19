@@ -1,7 +1,7 @@
 package com.corradowaver.bot;
 
 import com.corradowaver.bot.config.PropsManager;
-import com.corradowaver.bot.listeners.GuildJoinListener;
+import com.corradowaver.bot.listeners.GuildGirlJoinListener;
 import com.corradowaver.bot.listeners.MessageListener;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
@@ -25,7 +25,7 @@ public class GuildGirlBot {
     jda.getPresence().setStatus(OnlineStatus.ONLINE);
     jda.getPresence().setActivity(Activity.listening("lofi radio"));
     jda.addEventListener(new MessageListener());
-    jda.addEventListener(new GuildJoinListener());
+    jda.addEventListener(new GuildGirlJoinListener());
   }
 
   public static String getPrefix() {
