@@ -1,38 +1,52 @@
 package com.corradowaver.bot.listeners;
 
 import com.corradowaver.bot.GuildGirlBot;
-import com.corradowaver.bot.commands.messages.InfoMessages;
+import com.corradowaver.bot.handlers.commands.*;
+import com.corradowaver.bot.handlers.commands.messages.InfoMessages;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import static com.corradowaver.bot.commands.Commands.*;
-import static com.corradowaver.bot.commands.handlers.EventHandler.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static com.corradowaver.bot.handlers.commands.messages.Commands.*;
 
 public class MessageListener extends ListenerAdapter {
 
+  private final Map<String, GuildGirlCommand> commands;
+
+  public MessageListener() {
+    commands = new HashMap<>();
+    commands.put(INFO, new InfoCommand());
+    commands.put(PREFIX, new PrefixCommand());
+    commands.put(SEND, new SearchImageCommand());
+    commands.put(PING, new PingCommand());
+    commands.put(BTC, new BitcoinCommand());
+    commands.put(ART, new ArtCommand());
+    commands.put(JOIN, new JoinCommand());
+    commands.put(LEAVE, new LeaveCommand());
+    commands.put(PLAY, new PlayCommand());
+    commands.put(LIGHT, new LightCommand());
+  }
+
   public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
     TextChannel channel = event.getChannel();
-    setTypingStatus(channel);
     String[] args = event.getMessage().getContentRaw().split("\\s+");
     String message = args[0].toLowerCase();
     String prefix = GuildGirlBot.getPrefix();
     if (message.startsWith(prefix)) {
       String command = message.substring(prefix.length());
-      switch (command) {
-        case PREFIX -> sendResponse(channel, getPrefixCommandMessage(event));
-        case INFO -> sendResponse(channel, InfoMessages.getMessage(event));
-        case SEND -> sendResponse(channel, getSearchImageCommandMessage(event));
-        case PING -> sendResponse(channel, getPingCommandMessage(event));
-        case BTC -> sendResponse(channel, getBitcoinCommandMessage(event));
-        case LIGHT -> sendResponse(channel, getLightCommandMessage(event));
-        case ART -> sendResponse(channel, getArtCommandMessage(event));
-        case JOIN -> sendResponse(channel, getJoinCommandMessage(event));
-        case LEAVE -> sendResponse(channel, getLeaveCommandMessage(event));
-        case PLAY -> sendResponse(channel, getPlayCommandMessage(event));
-        default -> sendResponse(channel, getUnknownCommandMessage());
+      try {
+        setTypingStatus(channel);
+        sendResponse(channel, commands.get(command).execute(event));
+      } catch (NullPointerException ex) {
+        sendResponse(channel, getUnknownCommandMessage());
       }
     }
   }
@@ -47,5 +61,15 @@ public class MessageListener extends ListenerAdapter {
 
   private void setTypingStatus(TextChannel channel) {
     channel.sendTyping().queue();
+  }
+
+  private String getUnknownCommandMessage() {
+    return "sorry, i don't know this command";
+  }
+
+  public static List<String> getArgs(GuildMessageReceivedEvent event) {
+    return Arrays.stream(event.getMessage().getContentRaw().split("\\s+"))
+        .skip(1)
+        .collect(Collectors.toList());
   }
 }
